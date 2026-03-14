@@ -1,18 +1,18 @@
 import usb
-import usb.util
+
 print("usb:")
 dev = usb.core.find(idVendor=0x0403, idProduct=0x6014)
 print(dev)
 
-
 from pyftdi.ftdi import Ftdi
-print("ftdi:")
+
+# Just to display debugging info
+#print("ftdi:")
 #Ftdi().open_from_url('ftdi:///?')
 
 import os
-blah = os.environ["BLINKA_FT232H"]
-print("os:")
-print(blah)
+is_blinka_env_set = os.environ["BLINKA_FT232H"]
+print(f"is_blinka_env_set: {is_blinka_env_set}")
 
 
 import board
@@ -235,7 +235,7 @@ try:
 
     i2c.writeto(ADDR, bytes([0x00] + get_digit("C") + get_digit("O") + get_digit("O") + get_digit("L") ))
 
-    time.sleep(3)
+    time.sleep(30)
 
     # 5. Turn off the display
     # Base Blink Command (0x80) with the Display On bit cleared (0x00) = 0x80
